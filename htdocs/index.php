@@ -1,46 +1,34 @@
-<!DOCTYPE html>  
-<head>
-  <title>UPDATE PostgreSQL data with PHP</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <style>li {list-style: none;}</style>
-</head>
+<!DOCTYPE html>
+<?php session_start(); 
+    include 'partials/head.php'; ?>
 <body>
-  <h2>Supply bookid and enter</h2>
-  <ul>
-    <form name="display" action="index.php" method="POST" >
-      <li>Book ID:</li>
-      <li><input type="text" name="bookid" /></li>
-      <li><input type="submit" name="submit" /></li>
-    </form>
-  </ul>
-  <?php
-  	// Connect to the database. Please change the password in the following line accordingly
-    $db     = pg_connect("host=localhost port=5432 dbname=Project1 user=postgres password=test");	
-    $result = pg_query($db, "SELECT * FROM book where book_id = '$_POST[bookid]'");		// Query template
-    $row    = pg_fetch_assoc($result);		// To store the result row
-    if (isset($_POST['submit'])) {
-        echo "<ul><form name='update' action='index.php' method='POST' >  
-    	<li>Book ID:</li>  
-    	<li><input type='text' name='bookid_updated' value='$row[book_id]' /></li>  
-    	<li>Book Name:</li>  
-    	<li><input type='text' name='book_name_updated' value='$row[name]' /></li>  
-    	<li>Price (USD):</li><li><input type='text' name='price_updated' value='$row[price]' /></li>  
-    	<li>Date of publication:</li>  
-    	<li><input type='text' name='dop_updated' value='$row[date_of_publication]' /></li>  
-    	<li><input type='submit' name='new' /></li>  
-    	</form>  
-    	</ul>";
-    }
-    if (isset($_POST['new'])) {	// Submit the update SQL command
-        $result = pg_query($db, "UPDATE book SET book_id = '$_POST[bookid_updated]',  
-    name = '$_POST[book_name_updated]',price = '$_POST[price_updated]',  
-    date_of_publication = '$_POST[dop_updated]'");
-        if (!$result) {
-            echo "Update failed!!";
-        } else {
-            echo "Update successful!";
-        }
-    }
-    ?>  
+    <?php include 'partials/navbar.php'; ?>
+        <div class="container">
+            <div class="border border-primary rounded p-3 my-3">
+                <form action="index.php" method="GET">
+                    <div class="row">
+                        <div class="col form-group">
+                            <h4>FROM: </h4>
+                            <input type="text" class="form-control" 
+                                name="from" required>
+                        </div>
+                        <div class="col form-group">
+                            <h4>TO: </h4>
+                            <input type="text" class="form-control" 
+                                name="to" required>
+                        </div>
+                    </div>
+                    <br />
+                    <input class="btn btn-primary" type="Submit" name="Search">
+                </form>
+            </div>
+            <br />
+            <?php include 'partials/available_list.php';
+                if (isset($_SESSION['username'])) {
+                    echo"<br />";
+                    include 'partials/user_list.php';
+                }
+            ?>
+        </div>
+    <?php include 'partials/script.php'; ?>
 </body>
-</html>
