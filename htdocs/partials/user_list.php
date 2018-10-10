@@ -11,6 +11,7 @@
             <th scope='col'>Destination</th>
             <th scope='col'>Highest Bid</th>
             <th scope='col'>Your bid</th>
+            <th scopr='col'>Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -70,6 +71,15 @@
             <td>".$row["r_destination"]."</td>
             <td>".$highest[0]."</td>
             <td>".$user_highest[0]."</td>
+            <td><a href='/demo/delete_bid.php?date=".urlencode($row["r_date"]).
+            "&time=".urlencode($row["r_time"]).
+            "&origin=".urlencode($row["r_origin"]).
+            "&destination=".urlencode($row["r_destination"]).
+            "&plate=".urlencode($row["c_plate"])."'>
+                <button class='btn btn-outline-danger'>
+                    Delete
+                </button>
+            </a></td>
             </tr> 
         ";
         $index++;
