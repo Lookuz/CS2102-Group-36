@@ -25,18 +25,14 @@ if (!$db) {
 
 //Initialize result
 $result = pg_query($db, "SELECT * 
-        FROM rides r, drivers d
-        WHERE r.d_email = d.d_email");
-
-//Check if there is any filter in the URL
-if (isset($_GET['from']) && isset($_GET['to'])) {
-    $result = pg_query($db, "SELECT * 
-        FROM rides r
+        FROM rides r, bids b
         WHERE r.a_status='AVAILABLE'
-        AND r.r_origin LIKE '%' || '$_GET[from]' || '%'
-        AND r.r_destination LIKE '%' || '$_GET[to]' || '%'
+        AND b.p_email = '$_SESSION[email]'
+        AND r.d_email = b.d_email
+        AND r.c_plate = b.c_plate
+        AND r.r_date = b.r_date
+        AND r.r_time = b.r_time 
         ");
-}
 
 if (!$result) {
     echo 'Query error';

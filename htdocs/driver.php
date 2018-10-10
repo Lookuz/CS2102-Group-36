@@ -44,16 +44,10 @@ $db = pg_connect("host=localhost port=5432 dbname=Project user=postgres password
 
 if (isset($_GET['advertised'])) {
     $email = $_SESSION['email'];
-    $c_plate = pg_query($db, "SELECT c_plate FROM drivers d WHERE d.email = $email;")
+    $c_plate = pg_query($db, "SELECT c_plate FROM drivers d WHERE d.email = $email");
     $result = pg_query($db,"INSERT INTO rides
             VALUES('$email', '$c_plate', '$_GET[r_date]', '$_GET[r_time]', 
             '$_GET[r_origin]', '$_GET[r_destination]', 'AVAILABLE')");
-
-    if (!$result) {
-        echo "Error advertising ride.\n";
-    } else {
-        echo "success";
-    }
 }
 ?>
 <?php include 'partials/script.php'; ?>
