@@ -67,7 +67,7 @@
             <td>".$row["r_destination"]."</td>
             <td>".$highest[0]."</td>";
             if (isset($_SESSION['email'])) {
-                echo "<td><a href='/demo/bidding.php?date=".urlencode($row["r_date"]).
+                echo "<td><a href='/demo/bidpage.php?date=".urlencode($row["r_date"]).
                 "&time=".urlencode($row["r_time"]).
                 "&origin=".urlencode($row["r_origin"]).
                 "&destination=".urlencode($row["r_destination"])."'>
