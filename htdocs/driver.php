@@ -30,6 +30,18 @@ include 'partials/head.php'; ?>
             </div>
         </div>
     </div>
+    <?php
+    // Connect to the database. Please change the password in the following line accordingly
+    $db = pg_connect("host=localhost port=5432 dbname=Project user=postgres password=2012");
+
+    if (isset($_GET['advertised'])) {
+        $email = $_SESSION['email'];
+        $c_plate = pg_query($db, "SELECT c_plate FROM drivers d WHERE d.email = $email");
+        $result = pg_query($db,"INSERT INTO rides
+            VALUES('$email', '$c_plate', '$_GET[r_date]', '$_GET[r_time]', 
+            '$_GET[r_origin]', '$_GET[r_destination]', 'AVAILABLE')");
+    }
+    ?>
     <br />
     <?php include 'partials/available_list.php';
     if (isset($_SESSION['username'])) {
@@ -38,17 +50,6 @@ include 'partials/head.php'; ?>
     }
     ?>
 </div>
-<?php
-// Connect to the database. Please change the password in the following line accordingly
-$db = pg_connect("host=localhost port=5432 dbname=Project user=postgres password=2012");
 
-if (isset($_GET['advertised'])) {
-    $email = $_SESSION['email'];
-    $c_plate = pg_query($db, "SELECT c_plate FROM drivers d WHERE d.email = $email");
-    $result = pg_query($db,"INSERT INTO rides
-            VALUES('$email', '$c_plate', '$_GET[r_date]', '$_GET[r_time]', 
-            '$_GET[r_origin]', '$_GET[r_destination]', 'AVAILABLE')");
-}
-?>
 <?php include 'partials/script.php'; ?>
 </body>
