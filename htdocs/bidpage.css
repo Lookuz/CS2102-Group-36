@@ -1,7 +1,10 @@
-body {
+html {
     background-image: url(resources/bidpage-background.jpg);
     background-size: cover;
-    background-position: center;
+    /* background-position: center; */
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     font-family: 'Raleway', sans-serif;
 }
 
