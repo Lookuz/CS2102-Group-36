@@ -56,7 +56,7 @@
         } else {
             echo "
                 <script>
-                    window.location = '/demo/index';
+                    window.location = '/demo/home';
                 </script>";
         }
     }

@@ -1,9 +1,10 @@
 <?php 
+    session_start();
     include 'partials/head.php'; ?>
 <body>
     <?php include 'partials/navbar.php'; 
-        if (isset($SESSION['email'])) {
-            redirect("Location: /demo/home");
+        if (isset($_SESSION['email'])) {
+            header("Location: /demo/home");
         } ?>
     <div class="container">    
       <!-- Marketing messaging and featurettes

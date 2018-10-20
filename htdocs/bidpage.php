@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-<?php
-    session_start();
-    
-    echo "<head>
+<?php session_start(); ?>
+    <head>
         <title>
             Carpool
         </title>
@@ -20,11 +18,11 @@
         integrity='sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy' 
         crossorigin='anonymous'></script>
     </head>
-    <body>";
-        include 'partials/navbar.php';
-        include 'partials/connection.php';
-
-            echo "
+    <body>
+        <?php 
+            include 'partials/navbar.php';
+            include 'partials/connection.php';
+        ?>
             <div class='container d-flex align-items-center outer-box col-sm-offset-3 col-sm-6'>
                 <div class='inner-container justify-content-center self-align-center'>
                     <div class='dest-container col-sm-8 offset-sm-2'>
@@ -33,7 +31,7 @@
                                 <div class='w-100'><img src='resources/location.svg'></div>
                             </div>
                             <div class='col-sm-9'>
-                                <p class='form-control dest-box'>".$_GET['origin']."</p>
+                                <p class='form-control dest-box'><?php echo $_GET["origin"] ?></p>
                             </div>
                         </div>
                         <div class='row'>
@@ -49,7 +47,7 @@
                                 <div class='w-100'><img src='resources/location.svg'></div>
                             </div>
                             <div class='col-sm-9'>
-                                <p class='form-control dest-box'>".$_GET['destination']."</p>
+                                <p class='form-control dest-box'><?php echo $_GET["destination"] ?></p>
                             </div>
                         </div>
                     </div>
@@ -59,12 +57,13 @@
                                 <div class='col-sm-6'>
                                     <div class='form-group w-100'>
                                         <label class='w-100'>Date</label>
-                                        <p class='form-control'>".$_GET['date']."</p>
+                                        <p class='form-control'><?php echo $_GET["date"]?></p>
                                     </div>
                                     <div class='form-group w-100'>
                                         <label class='w-100'>Your Bid</label>
-                                        <p class='form-control'>";
-                    
+                                        <p class='form-control'>
+
+                                        <?php 
                                         $sql = 'SELECT get_user_bid_func($1, $2, $3, $4, $5)';
                                         $res = pg_prepare($db, 'get_user_bid', $sql);
                                         $res = pg_execute($db, 'get_user_bid', 
@@ -73,20 +72,21 @@
                                             echo $bid;
                                         } else {
                                             echo '0';
-                                        }
-                                    echo "
+                                        } ?>
+
                                         </p>
                                     </div>
                                 </div>
                                 <div class='col-sm-6'>
                                     <div class='form-group w-100'>
                                         <label class='w-100'>Time</label>
-                                        <p class='form-control'>".$_GET['time']."</p>
+                                        <p class='form-control'><?php echo $_GET["time"] ?></p>
                                     </div>
                                     <div class='form-group w-100'>
                                         <label class='w-100'>Highest Bid</label>
-                                        <p class='form-control'>";
-        
+                                        <p class='form-control'>
+                                        
+                                        <?php
                                         $sql = 'SELECT get_max_bid_func($1, $2, $3, $4)';
                                         $res = pg_prepare($db, 'get_max_bid', $sql);
                                         $res = pg_execute($db, 'get_max_bid', 
@@ -96,7 +96,7 @@
                                         } else {
                                             echo '0';
                                         }
-                                    echo "
+                                        ?>
                                         </p>
                                     </div>
                                 </div>
@@ -114,8 +114,9 @@
                     </div>
                 </div>
             </div>
-    </body> ";
+    </body>
     
+    <?php
     if (isset($_POST['Bid'])) {
         include 'partials/connection.php';
 
@@ -126,7 +127,6 @@
         
         echo "
         <script>
-            window.location = '/demo/index';
+            window.location = '/demo/home';
         </script>";
-    }
-?>
+    } ?>
