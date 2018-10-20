@@ -31,8 +31,7 @@ include 'partials/head.php'; ?>
         </div>
     </div>
     <br />
-    <?php include 'partials/available_list.php';
-        if (isset($_SESSION['username'])) {
+    <?php if (isset($_SESSION['username'])) {
             echo"<br />";
             include 'partials/driver_list.php';
         }

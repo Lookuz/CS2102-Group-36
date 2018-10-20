@@ -1,5 +1,5 @@
 <!-- Table to show all the rides that the driver has advertised -->
-<h3>Advertised rides:</h3>
+<h3 style="color:white">Advertised rides:</h3>
 <br />
 <table class='table'>
     <thead class='thead-dark'>

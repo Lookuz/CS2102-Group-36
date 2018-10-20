@@ -2,7 +2,7 @@
 <?php include 'partials/head.php'; ?>
 <body>
     <?php include 'partials/navbar.php'; ?>
-        <div class="container p-3">
+        <div class="container p-3 my-3 bg-light rounded">
             <h1>Sign-up page</h1>
             <br />
             <h3>Please fill up your particulars</h3>
@@ -49,7 +49,7 @@
             $_SESSION['email'] = $_POST['email'];
             $_SESSION['username'] = $_POST['username'];
             $_SESSION['isDriver'] = false;
-            header("Location: /demo/index");
+            header("Location: /demo/home");
         }
     }    
 ?>  

@@ -1,4 +1,3 @@
-
 <!-- Table to show all the rides that are currently available in the
     advertise table -->
 <h3 style="color:white;">Available rides:</h3>

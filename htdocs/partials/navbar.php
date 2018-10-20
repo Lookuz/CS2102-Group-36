@@ -5,13 +5,14 @@
     </button>
     <div class='collapse navbar-collapse' id='navbarNav'>
         <ul class='navbar-nav'>
-            <li class='nav-item'>
-                <a class='nav-link' href='/demo/index'>
-                    Home
-                </a>
-            </li>;
             <?php if (isset($_SESSION['username'])) {
-                echo "<li class='nav-item'>";
+                echo "
+                <li class='nav-item'>
+                    <a class='nav-link' href='/demo/home'>
+                        Home
+                    </a>
+                </li>
+                <li class='nav-item'>";
                 if ($_SESSION['isDriver'] == FALSE) {
                     echo "<a class='nav-link' href='/demo/driver_signup'>";
                 } else {
@@ -119,7 +120,7 @@ aria-labelledby='exampleModalLabel' aria-hidden='true'>
                 $_SESSION['isDriver'] = false;
             }
 
-            header('Location: /demo/index');
+            header('Location: /demo/home');
             exit;
             //echo ''$_SESSION[username]' <br />';
         } else {
