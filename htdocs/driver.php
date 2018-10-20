@@ -6,7 +6,7 @@ include 'partials/head.php'; ?>
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3 my-3">
-            <div class="border border-primary rounded p-3">
+            <div class="bg-light rounded p-3">
                 <h3>Advertise Ride</h3>
                 <br />
                 <form action="driver.php" method="GET">

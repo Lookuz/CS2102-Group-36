@@ -1,10 +1,15 @@
-<!DOCTYPE html>
 <?php session_start(); 
     include 'partials/head.php'; ?>
 <body>
     <?php include 'partials/navbar.php'; ?>
         <div class="container">
-            <div class="border border-primary rounded p-3 my-3">
+            <div class="jumbotron my-3">
+                <h1 class="display-4">Welcome to our carpool app! <i class="fas fa-car"></i></h1>
+                <p class="lead">Take a look at our wide selection of car rides for you to choose from and bid for it in a 
+                matter of seconds.</p>
+                <hr class="my-3">
+            </div>
+            <div class="rounded p-3 my-3 bg-light">
                 <form action="index.php" method="GET">
                     <div class="row">
                         <div class="col form-group">

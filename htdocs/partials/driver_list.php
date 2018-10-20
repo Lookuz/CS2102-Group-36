@@ -17,7 +17,7 @@
     <tbody>
 <?php
 // Connect to the database. Please change the password in the following line accordingly
-include 'partial/connection.php';
+include 'partials/connection.php';
 
 if (!$db) {
     echo 'Error Connecting';
