@@ -62,7 +62,7 @@
                                         <label class="w-100">Your Bid</label>
                                         <p class="form-control">
                                         <?php
-                                            $db = pg_connect("host=localhost port=5432 dbname=CarPool user=postgres password=2102");
+                                            include 'partials/connection.php';
 
                                             $sql = 'SELECT get_user_bid_func($1, $2, $3, $4, $5)';
                                             $res = pg_prepare($db, 'get_user_bid', $sql);
@@ -86,7 +86,7 @@
                                         <label class="w-100">Highest Bid</label>
                                         <p class="form-control">
                                         <?php
-                                            $db = pg_connect("host=localhost port=5432 dbname=CarPool user=postgres password=2102");
+                                            include 'partials/connection.php';
 
                                             $sql = 'SELECT get_max_bid_func($1, $2, $3, $4)';
                                             $res = pg_prepare($db, 'get_max_bid', $sql);
@@ -121,7 +121,7 @@
 
 <?php
     if (isset($_POST['Bid'])) {
-        $db = pg_connect("host=localhost port=5432 dbname=CarPool user=postgres password=2102");
+        include 'partials/connection.php';
 
         $sql = 'SELECT user_bid_func($1, $2, $3, $4, $5, $6)';
         $res = pg_prepare($db, 'user_bid', $sql);

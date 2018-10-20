@@ -17,7 +17,7 @@
     <tbody>
 <?php
 // Connect to the database. Please change the password in the following line accordingly
-$db = pg_connect("host=localhost port=5432 dbname=Project user=postgres password=2012");
+include 'partial/connection.php';
 
 if (!$db) {
     echo 'Error Connecting';
@@ -68,11 +68,10 @@ while($row=pg_fetch_assoc($result)) {
                 </a></td>";
     }
     echo "
-            <td>".$row["a_status"].</td>
+            <td>".$row["a_status"]."</td>
             </tr>";
         $index++;
     }
     ?>
-
     </tbody>
 </table>

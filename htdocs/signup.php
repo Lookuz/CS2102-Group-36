@@ -32,8 +32,8 @@
 
 <?php
   	// Connect to the database. Please change the password in the following line accordingly
-    $db = pg_connect("host=localhost port=5432 dbname=Project user=postgres password=2012");	
-    
+    include 'partials/connection.php';
+
     if (isset($_POST['signup'])) {
         $result = pg_query($db, "INSERT INTO users(u_email, u_password, u_name) 
         VALUES('$_POST[email]', '$_POST[password]', '$_POST[username]')");

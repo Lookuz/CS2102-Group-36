@@ -30,9 +30,10 @@
     </div>
 
     <?php
-  	// Connect to the database. Please change the password in the following line accordingly
-    $db = pg_connect("host=localhost port=5432 dbname=Project user=postgres password=2012");
-    if (isset($_POST['Login'])) {
+  	    // Connect to the database. Please change the password in the following line accordingly
+        include 'partials/connection.php';
+        
+        if (isset($_POST['Login'])) {
         //Execute query
         //Check that the passengers has the user that I typed in
         $result = pg_query($db,"SELECT u_email, u_password, u_name

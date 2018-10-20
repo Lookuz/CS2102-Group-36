@@ -32,15 +32,15 @@ include 'partials/head.php'; ?>
     </div>
     <br />
     <?php include 'partials/available_list.php';
-    if (isset($_SESSION['username'])) {
-        echo"<br />";
-        include 'partials/driver_list.php';
-    }
+        if (isset($_SESSION['username'])) {
+            echo"<br />";
+            include 'partials/driver_list.php';
+        }
     ?>
 </div>
 <?php
 // Connect to the database. Please change the password in the following line accordingly
-$db = pg_connect("host=localhost port=5432 dbname=Project user=postgres password=2012");
+include 'partials/connection.php';
 
 if (isset($_GET['advertised'])) {
     $email = $_SESSION['email'];
