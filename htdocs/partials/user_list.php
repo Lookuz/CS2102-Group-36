@@ -1,8 +1,8 @@
 <!-- Table to show all the rides that the user has bidded  -->
-    <h3>Your bids:</h3>
+    <h3 style="color:white;">Your bids:</h3>
     <br />
-    <table class='table'>
-    <thead class='thead-dark'>
+    <table class='table table-dark'>
+    <thead class='thead'>
         <tr>
             <th scope='col'>#</th>
             <th scope='col'>Date</th>

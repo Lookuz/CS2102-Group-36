@@ -6,7 +6,7 @@
         <div class="container">
             <h4 class="display-4 m-2">Are you sure you want to delete this bid?</h4>
             <br />
-            <div class="border border-secondary rounded p-3">
+            <div class="bg-light  p-3">
                 <h4>Details: </h4>
                 <form action='/demo/delete_bid.php' method='POST'>
                     <?php 
@@ -54,7 +54,10 @@
                 </div>
             </div>";
         } else {
-            header("Location: /demo/index");
+            echo "
+                <script>
+                    window.location = '/demo/home';
+                </script>";
         }
     }
 ?>

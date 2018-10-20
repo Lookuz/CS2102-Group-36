@@ -1,7 +1,7 @@
-html {
-    background-image: url(resources/bidpage-background.jpg);
-    background-size: cover;
-    /* background-position: center; */
+body {
+    background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(resources/bidpage-background.jpg);
+    /* background-size: cover;
+     background-position: center; */
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -26,22 +26,13 @@ form {
     text-align: center;
 }
 
-.outer-layer {
-    background-color: rgba(0,0,0,0.5);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%
-}
-
 .outer-box {
     background-color: rgba(0,0,0,0.65);
-    height: 100%;
+    height: 100vh;
     opacity: 50%;
-    -webkit-box-shadow: 0px 0px 10px 8px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 10px 8px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 10px 8px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 8px 10px 8px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 8px 10px 8px rgba(0,0,0,0.75);
+    box-shadow: 0px 8px 10px 8px rgba(0,0,0,0.75);
 }
 
 .form-container {
@@ -52,7 +43,8 @@ form {
 }
 
 .inner-container {
-    margin-top: 20%;
+    padding-top: 5%;
+    padding-bottom: 5%;
     width: 100%;
 }
 
