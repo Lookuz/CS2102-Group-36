@@ -116,6 +116,8 @@ aria-labelledby='exampleModalLabel' aria-hidden='true'>
             //The user has a car
             if(pg_num_rows($driver_result) != 0) {
                 $_SESSION['isDriver'] = true;
+                $d_row = pg_fetch_assoc($driver_result);
+                $_SESSION['c_plate'] = $d_row['c_plate'];
             } else {
                 $_SESSION['isDriver'] = false;
             }

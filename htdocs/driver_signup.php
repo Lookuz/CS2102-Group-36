@@ -46,6 +46,7 @@
       } else {
         echo "success";
         $_SESSION['isDriver'] = true;
+        $_SESSION['c_plate'] = $_POST{'c_plate'};
         // Direct to Advertise Ride page
         header("Refresh:0; url=driver.php");
       }
