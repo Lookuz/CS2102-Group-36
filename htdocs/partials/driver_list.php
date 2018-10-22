@@ -68,7 +68,7 @@ while($row=pg_fetch_assoc($result)) {
                 </a></td>";
     }
     echo "
-            <td>".$row["a_status"].</td>
+            <td>".$row["a_status"]."</td>
             </tr>";
         $index++;
     }

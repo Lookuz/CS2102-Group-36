@@ -21,7 +21,12 @@ include 'partials/head.php'; ?>
                                name="r_destination" required>
                     </div>
                     <div class="form-group">
-                        <h4>Start Time: </h4>
+                        <h4>Date: </h4>
+                        <input type="text" class="form-control"
+                               name="r_date" required>
+                    </div>
+                    <div class="form-group">
+                        <h4>Time: </h4>
                         <input type="text" class="form-control"
                                name="r_time" required>
                     </div>
@@ -43,11 +48,11 @@ include 'partials/head.php'; ?>
     }
     ?>
     <br />
-    <?php include 'partials/available_list.php';
-    if (isset($_SESSION['username'])) {
-        echo"<br />";
-        include 'partials/driver_list.php';
-    }
+    <?php include 'partials/driver_list.php';
+    //if (isset($_SESSION['username'])) {
+    //    echo"<br />";
+    //    include 'partials/driver_list.php';
+    //}
     ?>
 </div>
 
