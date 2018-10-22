@@ -1,5 +1,5 @@
 <!-- Table to show all the rides that the driver has advertised -->
-<h3>Advertised rides:</h3>
+<h3 style="color:white">Advertised rides:</h3>
 <br />
 <table class='table'>
     <thead class='thead-dark'>
@@ -17,7 +17,7 @@
     <tbody>
 <?php
 // Connect to the database. Please change the password in the following line accordingly
-$db = pg_connect("host=localhost port=5432 dbname=Project user=postgres password=2012");
+include 'partials/connection.php';
 
 if (!$db) {
     echo 'Error Connecting';
@@ -73,6 +73,5 @@ while($row=pg_fetch_assoc($result)) {
         $index++;
     }
     ?>
-
     </tbody>
 </table>

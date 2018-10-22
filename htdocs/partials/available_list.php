@@ -1,10 +1,9 @@
-
 <!-- Table to show all the rides that are currently available in the
     advertise table -->
-<h3>Available rides:</h3>
+<h3 style="color:white;">Available rides:</h3>
 <br />
-<table class='table'>
-    <thead class='thead-dark'>
+<table class='table table-dark'>
+    <thead class='thead'>
         <tr>
             <th scope='col'>#</th>
             <th scope='col'>Date</th>
@@ -20,7 +19,7 @@
     <tbody>
 <?php
     // Connect to the database. Please change the password in the following line accordingly
-    $db = pg_connect("host=localhost port=5432 dbname=Project user=postgres password=2012");
+    include 'partials/connection.php';
 
     if (!$db) {
         echo 'Error Connecting';
@@ -67,7 +66,7 @@
             <td>".$row["r_destination"]."</td>
             <td>".$highest[0]."</td>";
             if (isset($_SESSION['email'])) {
-                echo "<td><a href='/demo/bidding.php?date=".urlencode($row["r_date"]).
+                echo "<td><a href='/demo/bidpage.php?date=".urlencode($row["r_date"]).
                 "&time=".urlencode($row["r_time"]).
                 "&origin=".urlencode($row["r_origin"]).
                 "&destination=".urlencode($row["r_destination"])."'>

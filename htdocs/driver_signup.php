@@ -7,7 +7,7 @@
         <div class="container">
           <div class="row">
               <div class="col-md-6 offset-md-3 my-3">
-                  <div class="border border-primary rounded p-3">
+                  <div class="bg-light rounded p-3">
                       <h2>Register as a driver</h2>
                       <br />
                       <form action="driver_signup.php" method="POST">
@@ -34,8 +34,8 @@
         </div>
     <?php
     // Connect to the database. Please change the password in the following line accordingly
-    $db = pg_connect("host=localhost port=5432 dbname=Project user=postgres password=2012");
-
+    include 'partials/connection.php';
+    
     if (isset($_POST['driver_signup'])) {
       $email = $_SESSION['email'];
       $result = pg_query($db,"INSERT INTO drivers(c_plate, d_email, c_brand, c_model)
