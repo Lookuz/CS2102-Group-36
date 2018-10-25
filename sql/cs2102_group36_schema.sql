@@ -22,9 +22,9 @@ CREATE TABLE Drivers (
 
 CREATE TABLE Rides (
     r_id SERIAL PRIMARY KEY,
-    c_plate VARCHAR(10),
-    r_date DATE,
-    r_time TIME,
+    c_plate VARCHAR(10) NOT NULL,
+    r_date DATE NOT NULL,
+    r_time TIME NOT NULL,
     r_origin VARCHAR(64) NOT NULL,
     r_destination VARCHAR(64) NOT NULL,
     a_status VARCHAR(10) NOT NULL CHECK(a_status IN ('AVAILABLE', 'CANCELLED', 'TAKEN')) DEFAULT 'AVAILABLE',
@@ -33,8 +33,9 @@ CREATE TABLE Rides (
 
 /* Relationships */
 CREATE TABLE Bids (
-    r_id INT PRIMARY KEY,
+    r_id INT,
     p_email VARCHAR(64),
     bid NUMERIC CHECK(bid > 0) NOT NULL,
-    FOREIGN KEY(r_id) REFERENCES Rides(r_id) 
+    FOREIGN KEY(r_id) REFERENCES Rides(r_id),
+    PRIMARY KEY(r_id, p_email) 
 );
