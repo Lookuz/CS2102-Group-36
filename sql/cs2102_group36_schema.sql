@@ -17,7 +17,7 @@ CREATE TABLE Drivers (
     d_email VARCHAR(64) NOT NULL UNIQUE,
     c_brand VARCHAR(64),
     c_model VARCHAR(64),
-    FOREIGN KEY(d_email) REFERENCES Users(u_email)
+    FOREIGN KEY(d_email) REFERENCES Users(u_email) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE Rides (
@@ -28,7 +28,7 @@ CREATE TABLE Rides (
     r_origin VARCHAR(64) NOT NULL,
     r_destination VARCHAR(64) NOT NULL,
     a_status VARCHAR(10) NOT NULL CHECK(a_status IN ('AVAILABLE', 'CANCELLED', 'TAKEN')) DEFAULT 'AVAILABLE',
-    FOREIGN KEY(c_plate) REFERENCES Drivers(c_plate)
+    FOREIGN KEY(c_plate) REFERENCES Drivers(c_plate) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 /* Relationships */
@@ -36,6 +36,6 @@ CREATE TABLE Bids (
     r_id INT,
     p_email VARCHAR(64),
     bid NUMERIC CHECK(bid > 0) NOT NULL,
-    FOREIGN KEY(r_id) REFERENCES Rides(r_id),
+    FOREIGN KEY(r_id) REFERENCES Rides(r_id) ON DELETE CASCADE,
     PRIMARY KEY(r_id, p_email) 
 );
