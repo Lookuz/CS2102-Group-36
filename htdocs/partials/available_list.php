@@ -23,22 +23,10 @@
 
     if (!$db) {
         echo 'Error Connecting';
-    }
+    }  
 
     //Initialize result
-    $result = pg_query($db, "SELECT * 
-        FROM rides r
-        WHERE r.a_status='AVAILABLE'");
-
-    //Check if there is any filter in the URL
-    if (isset($_GET['from']) && isset($_GET['to'])) {
-        $result = pg_query($db, "SELECT * 
-        FROM rides r
-        WHERE r.a_status='AVAILABLE'
-        AND r.r_origin LIKE '%' || '$_GET[from]' || '%'
-        AND r.r_destination LIKE '%' || '$_GET[to]' || '%'
-        ");
-    }
+    $result = pg_query($db, "SELECT * FROM get_available_list('$_SESSION[email]')");
 
     if (!$result) {
         echo 'Query error';
@@ -47,29 +35,22 @@
     $index = 1;
 
     while($row=pg_fetch_assoc($result)) {
-        $highest_result = pg_query($db, "SELECT max(b.bid)
-        FROM bids b
-        WHERE b.d_email = '$row[d_email]'
-        AND b.c_plate ='$row[c_plate]'
-        AND b.r_date = '$row[r_date]'
-        AND b.r_time = '$row[r_time]'
-        ");
+        $highest_result = pg_query($db, "SELECT get_max_bid_func($row[r_id])");
         
-        $highest = pg_fetch_row($highest_result);
+        echo "<script>
+            console.log($row);
+        </script>";
 
         echo "
             <tr>
             <th scope='row'>".$index."</th>
-            <td>".$row["r_date"]."</td>
-            <td>".$row["r_time"]."</td>
-            <td>".$row["r_origin"]."</td>
-            <td>".$row["r_destination"]."</td>
-            <td>".$highest[0]."</td>";
+            <td>".$row["r_date_res"]."</td>
+            <td>".$row["r_time_res"]."</td>
+            <td>".$row["r_origin_res"]."</td>
+            <td>".$row["r_destination_res"]."</td>
+            <td>".$row["max_bid"]."</td>";
             if (isset($_SESSION['email'])) {
-                echo "<td><a href='/demo/bidpage.php?date=".urlencode($row["r_date"]).
-                "&time=".urlencode($row["r_time"]).
-                "&origin=".urlencode($row["r_origin"]).
-                "&destination=".urlencode($row["r_destination"])."'>
+                echo "<td><a href='/demo/bidpage.php?id=".urlencode($row["r_id"])."'>
                 <button class='btn btn-outline-primary'/>Bid here</button>
                 </a></td>";
             }
