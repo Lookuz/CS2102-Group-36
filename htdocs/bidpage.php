@@ -31,7 +31,14 @@
                                 <div class='w-100'><img src='resources/location.svg'></div>
                             </div>
                             <div class='col-sm-9'>
-                                <p class='form-control dest-box'><?php echo $_GET["origin"] ?></p>
+                                <p class='form-control dest-box'><?php 
+                                    $sql = 'SELECT * FROM get_ride_details($1)';
+                                    $res = pg_prepare($db, 'get_ride_details', $sql);
+                                    $res = pg_execute($db, 'get_ride_details', array($_GET["id"]));
+                                    if($date = pg_fetch_result($res, 2)) {
+                                        echo $date;
+                                    } 
+                                ?></p>
                             </div>
                         </div>
                         <div class='row'>
@@ -47,7 +54,14 @@
                                 <div class='w-100'><img src='resources/location.svg'></div>
                             </div>
                             <div class='col-sm-9'>
-                                <p class='form-control dest-box'><?php echo $_GET["destination"] ?></p>
+                                <p class='form-control dest-box'><?php 
+                                    $sql = 'SELECT * FROM get_ride_details($1)';
+                                    // $res = pg_prepare($db, 'get_ride_details', $sql);
+                                    $res = pg_execute($db, 'get_ride_details', array($_GET["id"]));
+                                    if($date = pg_fetch_result($res, 3)) {
+                                        echo $date;
+                                    } 
+                                ?></p>
                             </div>
                         </div>
                     </div>
@@ -57,17 +71,23 @@
                                 <div class='col-sm-6'>
                                     <div class='form-group w-100'>
                                         <label class='w-100'>Date</label>
-                                        <p class='form-control'><?php echo $_GET["date"]?></p>
+                                        <p class='form-control'><?php 
+                                            $sql = 'SELECT * FROM get_ride_details($1)';
+                                            // $res = pg_prepare($db, 'get_ride_details', $sql);
+                                            $res = pg_execute($db, 'get_ride_details', array($_GET["id"]));
+                                            if($date = pg_fetch_result($res, 0)) {
+                                                echo $date;
+                                            } 
+                                        ?></p>
                                     </div>
                                     <div class='form-group w-100'>
                                         <label class='w-100'>Your Bid</label>
                                         <p class='form-control'>
 
                                         <?php 
-                                        $sql = 'SELECT get_user_bid_func($1, $2, $3, $4, $5)';
+                                        $sql = 'SELECT get_user_bid_func($1, $2)';
                                         $res = pg_prepare($db, 'get_user_bid', $sql);
-                                        $res = pg_execute($db, 'get_user_bid', 
-                                            array($_SESSION['email'], $_GET['origin'], $_GET['destination'], $_GET['date'], $_GET['time']));
+                                        $res = pg_execute($db, 'get_user_bid', array($_SESSION['email'], $_GET['id']));
                                         if($bid = pg_fetch_result($res, 0)) {
                                             echo $bid;
                                         } else {
@@ -80,17 +100,23 @@
                                 <div class='col-sm-6'>
                                     <div class='form-group w-100'>
                                         <label class='w-100'>Time</label>
-                                        <p class='form-control'><?php echo $_GET["time"] ?></p>
+                                        <p class='form-control'><?php
+                                            $sql = 'SELECT * FROM get_ride_details($1)';
+                                            // $res = pg_prepare($db, 'get_ride_details', $sql);
+                                            $res = pg_execute($db, 'get_ride_details', array($_GET["id"]));
+                                            if($date = pg_fetch_result($res, 1)) {
+                                                echo $date;
+                                            } 
+                                        ?></p>
                                     </div>
                                     <div class='form-group w-100'>
                                         <label class='w-100'>Highest Bid</label>
                                         <p class='form-control'>
                                         
                                         <?php
-                                        $sql = 'SELECT get_max_bid_func($1, $2, $3, $4)';
+                                        $sql = 'SELECT get_max_bid_func($1)';
                                         $res = pg_prepare($db, 'get_max_bid', $sql);
-                                        $res = pg_execute($db, 'get_max_bid', 
-                                            array($_GET['origin'], $_GET['destination'], $_GET['date'], $_GET['time']));
+                                        $res = pg_execute($db, 'get_max_bid', array($_GET['id']));
                                         if($bid = pg_fetch_result($res, 0)) {
                                             echo $bid;
                                         } else {
@@ -120,10 +146,9 @@
     if (isset($_POST['Bid'])) {
         include 'partials/connection.php';
 
-        $sql = 'SELECT user_bid_func($1, $2, $3, $4, $5, $6)';
+        $sql = 'SELECT user_bid_func($1, $2, $3)';
         $res = pg_prepare($db, 'user_bid', $sql);
-        $res = pg_execute($db, 'user_bid', array($_GET['origin'], $_GET['destination'], 
-        $_GET['date'], $_GET['time'], $_SESSION['email'], $_POST['new-bid']));
+        $res = pg_execute($db, 'user_bid', array($_SESSION['email'], $_GET['id'], $_POST['new-bid']));
         
         echo "
         <script>
