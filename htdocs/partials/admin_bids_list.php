@@ -1,6 +1,7 @@
 <!-- Table to show all the bids that are currently in the database -->
+<br />
 <h3 style="color:white;">Bids in database  
-    <button class='btn btn-outline-success' data-toggle='modal' 
+    <button class='btn btn-success' data-toggle='modal' 
             data-target='#createBidModal'>
             Create Bid
     </button> 
@@ -14,6 +15,8 @@
             <th scope='col'>Ride ID</th>
             <th scope='col'>Passenger's Email</th>
             <th scope='col'>Bid</th>
+            <th scope='col'>Delete</th>
+            <th scope='col'>Edit</th>
         </tr>
     </thead>
     <tbody>
@@ -21,12 +24,8 @@
     // Connect to the database. Please change the password in the following line accordingly
     include 'partials/connection.php';
 
-    if (!$db) {
-        echo 'Error Connecting';
-    }
-
     //Initialize result
-    $result = pg_query($db, "SELECT FROM get_admin_bids_list()");
+    $result = pg_query($db, "SELECT * FROM get_admin_bids_list()");
 
     if (!$result) {
         echo 'Query error';
@@ -40,9 +39,17 @@
             <td>".$row["r_id"]."</td>
             <td>".$row["p_email"]."</td>
             <td>".$row["bid"]."</td>
-            <td><a href='/demo/actions/delete_bid.php?id=".$row["r_id"]."'>
+            <td><a href='/demo/actions/delete_bid.php?id=".urlencode($row["r_id"])."'>
                     <button class='btn btn-outline-danger'>
-                        Delete user
+                        Delete bid
+                    </button>
+                </a>
+            </td>
+            <td><a href='/demo/admin_update_bid.php?id=".urlencode($row["r_id"]).
+                "&email=".urlencode($row["p_email"]).
+                "&bid=".urlencode($row["bid"])."'>
+                    <button class='btn btn-outline-primary'>
+                        Edit bid
                     </button>
                 </a>
             </td>

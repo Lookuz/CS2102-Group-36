@@ -20,23 +20,32 @@
                 }     
                 echo "Offer My Ride</a>
                     </li>";
+                if ($_SESSION['isadmin'] == true) {
+                    echo "
+                        <li class='nav-item'>
+                            <a class='nav-link' href='/demo/admin'>
+                                Administrator
+                            </a>
+                        </li>
+                    ";
+                }
             }
         echo " </ul>";
         if(!isset($_SESSION['username'])) {
-        echo "
-        <ul class='navbar-nav ml-auto'>
-            <li class='nav-item'>
-                <a class='nav-link' href='#'>
-                    <button class='btn btn-dark' data-toggle='modal' 
-                    data-target='#loginModal'>Login</button>
-                </a>
-            </li>
-            <li class='nav-item'>
-                <a class='nav-link' href='/demo/signup'>
-                    <button class='btn btn-dark'>Signup</button>
-                </a>
-            </li>
-        </ul>";
+            echo "
+            <ul class='navbar-nav ml-auto'>
+                <li class='nav-item'>
+                    <a class='nav-link' href='#'>
+                        <button class='btn btn-dark' data-toggle='modal' 
+                        data-target='#loginModal'>Login</button>
+                    </a>
+                </li>
+                <li class='nav-item'>
+                    <a class='nav-link' href='/demo/signup'>
+                        <button class='btn btn-dark'>Signup</button>
+                    </a>
+                </li>
+            </ul>";
         } else {
             echo "<ul class='navbar-nav ml-auto'>
                 <li class='nav-item'>
@@ -45,7 +54,12 @@
                     </a>
                 </li>
             </ul>";
-        } ?>
+        } 
+        /*echo "<script>
+                console.log($_SESSION[isadmin]);        
+            </script>
+        ";*/
+        ?>
     </div>
 </nav>
 
@@ -90,8 +104,8 @@ aria-labelledby='exampleModalLabel' aria-hidden='true'>
         if (isset($_POST['Login'])) {
         //Execute query
         //Check that the passengers has the user that I typed in
-        $result = pg_query($db,"SELECT u_email, u_password, u_name
-        FROM Users
+        $result = pg_query($db,"SELECT u_email, u_password, u_name, isadmin
+        FROM users
         WHERE u_email = '$_POST[email]'
         AND u_password = '$_POST[password]'");
 
@@ -105,6 +119,12 @@ aria-labelledby='exampleModalLabel' aria-hidden='true'>
             session_start();
             $_SESSION['username'] = $row['u_name'];
             $_SESSION['email'] = $row['u_email'];
+            if ($_row['isadmine'] = 'TRUE') {
+                $_SESSION['isadmin'] = true;
+            } else {
+                $_SESSION['isadmin'] = false;
+            }
+            
 
             /* Check if the current user is a driver
                 and retain the info in the session */

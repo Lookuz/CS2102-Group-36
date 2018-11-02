@@ -37,13 +37,13 @@
     while($row=pg_fetch_assoc($result)) {
         echo "<tr>
             <th scope='row'>".$index."</th>
-            <td>".$row["d_email"]."</td>
+            <td>TO BE DONE</td>
             <td>".$row["c_plate"]."</td>
             <td>".$row["r_date"]."</td>
             <td>".$row["r_time"]."</td>
             <td>".$row["r_origin"]."</td>
             <td>".$row["r_destination"]."</td>
-            <td>".$row["a_status"]."</td>
+            <td>TO BE DONE</td>
             <td><a href='/demo/actions/delete_ride.php?email=".$row["d_email"].
             "&plate=".$row["c_plate"].
             "&date=".$row["r_date"].

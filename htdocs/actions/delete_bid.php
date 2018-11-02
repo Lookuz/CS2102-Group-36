@@ -8,5 +8,5 @@
         echo "Failed";
     }
 
-    header('Location: /demo/home.php');
+    header('Location: /demo/admin.php');
 ?>
