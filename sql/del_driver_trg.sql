@@ -4,19 +4,16 @@ RETURNS TRIGGER
 AS
 $$
 BEGIN
-	RAISE NOTICE 'Executing del_driver_trg_func()';
 	IF EXISTS (
 		SELECT * FROM rides r
 		WHERE r.c_plate = OLD.c_plate
 	) THEN
 		DELETE FROM rides r
 		WHERE r.c_plate = OLD.c_plate;
-		RAISE NOTICE 'Deleting old ride entries with d_email %', OLD.d_email;
 		RETURN OLD;
 	
 	ELSE
-		RAISE NOTICE 'No relevant entries, exiting';
-		RETURN NULL;
+		RETURN OLD;
 	
 	END IF;
 END

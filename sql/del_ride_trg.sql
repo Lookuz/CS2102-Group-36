@@ -4,19 +4,15 @@ RETURNS TRIGGER
 AS
 $$
 BEGIN
-	RAISE NOTICE 'Executing del_ride_trg_func()';
 	IF EXISTS (
 		SELECT * FROM bids b
 		WHERE b.r_id = OLD.r_id
 	) THEN
 		DELETE FROM bids b
 		WHERE OLD.r_id = b.r_id;
-		RAISE NOTICE 'Deleting old entries with ride ID %', OLD.r_id;
-	
 		RETURN OLD;
 	ELSE
-		RAISE NOTICE 'No related entries, exiting';
-		RETURN NULL;
+		RETURN OLD;
 	END IF;
 END
 $$

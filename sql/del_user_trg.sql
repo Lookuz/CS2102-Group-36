@@ -4,7 +4,6 @@ RETURNS TRIGGER
 AS
 $$
 BEGIN
-	RAISE NOTICE 'Executing del_user_trg_func()';
 	CASE
 		WHEN EXISTS (
 			SELECT * FROM bids b
@@ -12,7 +11,6 @@ BEGIN
 		) THEN
 			DELETE FROM bids b
 			WHERE b.p_email = OLD.u_email;
-			RAISE NOTICE 'Deleting old bid entries with u_email %', OLD.u_email;
 
 		WHEN EXISTS (
 			SELECT * FROM drivers d
@@ -20,11 +18,6 @@ BEGIN
 		) THEN
 			DELETE FROM drivers d
 			WHERE d.d_email = OLD.u_email;
-			RAISE NOTICE 'Deleting old driver entries with u_email %', OLD.u_email;
-
-		ELSE
-			RAISE NOTICE 'No related entries, exiting';
-			RETURN NULL;
 	END CASE;
 		
 	RETURN OLD;
