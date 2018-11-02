@@ -39,17 +39,17 @@
             <td>".$row["r_id"]."</td>
             <td>".$row["p_email"]."</td>
             <td>".$row["bid"]."</td>
-            <td><a href='/demo/actions/delete_bid.php?id=".urlencode($row["r_id"])."'>
-                    <button class='btn btn-outline-danger'>
-                        Delete bid
-                    </button>
-                </a>
-            </td>
             <td><a href='/demo/admin_update_bid.php?id=".urlencode($row["r_id"]).
                 "&email=".urlencode($row["p_email"]).
                 "&bid=".urlencode($row["bid"])."'>
                     <button class='btn btn-outline-primary'>
                         Edit bid
+                    </button>
+                </a>
+            </td>
+            <td><a href='/demo/actions/delete_bid.php?id=".urlencode($row["r_id"])."'>
+                    <button class='btn btn-outline-danger'>
+                        Delete bid
                     </button>
                 </a>
             </td>

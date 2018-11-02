@@ -42,14 +42,22 @@
             <td>".$row["u_password"]."</td>
             <td>".$row["isadmin"]."</td>
             <td>
+<<<<<<< HEAD
                 <a href='/demo/admin_update_user.php?email=".urlencode($row["u_email"])."'>
+=======
+                <a href='/demo/admin_update_user.php?email=".$row["u_email"]."'>
+>>>>>>> Admin ride functions added, bug for the editing of rides
                     <button class='btn btn-outline-primary'>
                         Edit user
                     </button>
                 </a>
             </td>
             <td>
+<<<<<<< HEAD
                 <a href='/demo/actions/delete_user.php?email=".urlencode($row["u_email"])."'>
+=======
+                <a href='/demo/actions/delete_user.php?email=".$row["u_email"]."'>
+>>>>>>> Admin ride functions added, bug for the editing of rides
                     <button class='btn btn-outline-danger'>
                         Delete user
                     </button>
