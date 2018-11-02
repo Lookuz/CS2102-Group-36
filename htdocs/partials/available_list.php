@@ -36,10 +36,6 @@
 
     while($row=pg_fetch_assoc($result)) {
         $highest_result = pg_query($db, "SELECT get_max_bid_func($row[r_id])");
-        
-        echo "<script>
-            console.log($row);
-        </script>";
 
         echo "
             <tr>

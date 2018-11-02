@@ -24,16 +24,7 @@
     }
 
     //Initialize result
-    $result = pg_query($db, "SELECT * 
-        FROM rides r, bids b
-        WHERE r.a_status='AVAILABLE'
-        AND b.p_email = '$_SESSION[email]'
-        AND r.d_email = b.d_email
-        AND r.c_plate = b.c_plate
-        AND r.r_date = b.r_date
-        AND r.r_time = b.r_time 
-        ");
-
+    $result = pg_query($db, "SELECT * FROM get_user_list('$_SESSION[email]')");
 
     if (!$result) {
         echo 'Query error';
@@ -42,40 +33,23 @@
     $index = 1;
 
     while($row=pg_fetch_assoc($result)) {
-        $highest_result = pg_query($db, "SELECT max(b.bid)
-            FROM bids b
-            WHERE b.d_email = '$row[d_email]'
-            AND b.c_plate ='$row[c_plate]'
-            AND b.r_date = '$row[r_date]'
-            AND b.r_time = '$row[r_time]'
-        ");
+        $user_bids_result = pg_query($db, "SELECT get_user_bid_func('$_SESSION[email]', $row[r_id])");
+        $user_bid = pg_fetch_result($user_bids_result, 0, 0);
 
-        $user_highest_result = pg_query($db, "SELECT max(b.bid)
-            FROM bids b
-            WHERE b.d_email = '$row[d_email]'
-            AND b.c_plate ='$row[c_plate]'
-            AND b.r_date = '$row[r_date]'
-            AND b.r_time = '$row[r_time]'
-            AND p_email = '$_SESSION[email]'
-        ");
-        
-        $highest = pg_fetch_row($highest_result);
-        $user_highest = pg_fetch_row($user_highest_result);
+        if (empty($user_bid)) {
+            $user_bid = 0;
+        }
 
         echo "
             <tr>
             <th scope='row'>".$index."</th>
-            <td>".$row["r_date"]."</td>
-            <td>".$row["r_time"]."</td>
-            <td>".$row["r_origin"]."</td>
-            <td>".$row["r_destination"]."</td>
-            <td>".$highest[0]."</td>
-            <td>".$user_highest[0]."</td>
-            <td><a href='/demo/delete_bid.php?date=".urlencode($row["r_date"]).
-            "&time=".urlencode($row["r_time"]).
-            "&origin=".urlencode($row["r_origin"]).
-            "&destination=".urlencode($row["r_destination"]).
-            "&plate=".urlencode($row["c_plate"])."'>
+            <td>".$row["r_date_res"]."</td>
+            <td>".$row["r_time_res"]."</td>
+            <td>".$row["r_origin_res"]."</td>
+            <td>".$row["r_destination_res"]."</td>
+            <td>".$row["max_bid"]."</td>
+            <td>".$user_bid."</td>
+            <td><a href='/demo/delete_bid.php?id=".$row["r_id"]."'>
                 <button class='btn btn-outline-danger'>
                     Delete
                 </button>
