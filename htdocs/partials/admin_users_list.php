@@ -8,6 +8,9 @@
             <th scope='col'>#</th>
             <th scope='col'>Email</th>
             <th scope='col'>Username</th>
+            <th scope='col'>Password</th>
+            <th scope='col'>IsAdmin</th>
+            <th scope='col'>Edit</th>
             <th scope='col'>Delete</th>
         </tr>
     </thead>
@@ -16,13 +19,8 @@
     // Connect to the database. Please change the password in the following line accordingly
     include 'partials/connection.php';
 
-    if (!$db) {
-        echo 'Error Connecting';
-    }
-
     //Initialize result
-    $result = pg_query($db, "SELECT * 
-        FROM users");
+    $result = pg_query($db, "SELECT * FROM get_admin_user_list()");
 
     if (!$result) {
         echo 'Query error';
@@ -36,7 +34,17 @@
             <th scope='row'>".$index."</th>
             <td>".$row["u_email"]."</td>
             <td>".$row["u_name"]."</td>
-            <td><a href='/demo/actions/delete_user.php?email=".$row["u_email"]."'>
+            <td>".$row["u_password"]."</td>
+            <td>".$row["isadmin"]."</td>
+            <td>
+                <a href='/demo/admin_update_user.php?email=".$row["u_email"]."'>
+                    <button class='btn btn-outline-primary'>
+                        Edit user
+                    </button>
+                </a>
+            </td>
+            <td>
+                <a href='/demo/actions/delete_user.php?email=".$row["u_email"]."'>
                     <button class='btn btn-outline-danger'>
                         Delete user
                     </button>

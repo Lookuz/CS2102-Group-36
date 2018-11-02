@@ -11,7 +11,7 @@ BEGIN
 	r_time = string_to_time(r_time_str);
 
 	INSERT INTO rides
-	VALUES(c_plate, r_date, r_time, r_origin, r_destination);
+	VALUES(DEFAULT, c_plate, r_date, r_time, r_origin, r_destination);
 END
 $$
 LANGUAGE plpgsql;

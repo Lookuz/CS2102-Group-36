@@ -110,7 +110,6 @@ aria-labelledby='exampleModalLabel' aria-hidden='true'>
 
         if (!$result) {
             echo 'error occured!';
-            exit;
         } else {
             echo "
             <script>
