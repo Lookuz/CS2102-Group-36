@@ -16,9 +16,9 @@
             <th scope='col'>Time</th>
             <th scope='col'>Origin</th>
             <th scope='col'>Destination</th>
-            <th scope='col'>Status</th>
-            <th scope='col'>Delete</th>
+            <th scope='col'>Status</th>    
             <th scope='col'>Edit</th>
+            <th scope='col'>Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -45,15 +45,15 @@
             <td>".$row["r_origin"]."</td>
             <td>".$row["r_destination"]."</td>
             <td>".$row["a_status"]."</td>
-            <td><a href='/demo/actions/delete_ride.php?id=".$row["r_id"]."'>
-                    <button class='btn btn-outline-danger'>
-                        Delete ride
+            <td><a href='/demo/admin_update_ride.php?id=".urlencode($row["r_id"])."'>
+                    <button class='btn btn-outline-primary'>
+                        Edit ride
                     </button>
                 </a>
             </td>
-            <td><a href='/demo/admin_update_ride.php?id=".$row["r_id"]."'>
-                    <button class='btn btn-outline-primary'>
-                        Edit ride
+            <td><a href='/demo/actions/delete_ride.php?id=".urlencode($row["r_id"])."'>
+                    <button class='btn btn-outline-danger'>
+                        Delete ride
                     </button>
                 </a>
             </td>
