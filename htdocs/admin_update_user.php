@@ -11,6 +11,7 @@
             <div class="row my-4" style="color:white;">
                     <div class="offset-md-4 col-md-4">
                         <form method="POST">
+                            <?php
                                 echo "<h1>Update user</h1>";
                                 echo "<label for='email'>Email</label>";
                                 echo "<input type='email' id='email' name='email' class='form-control' value='"
@@ -22,7 +23,7 @@
                                 echo "<input type='text' id='username' class='form-control' name='username' value='"
                                     .$row["u_name"]."' required>";
                                 echo "<div class='form-check'>
-                                    <input class='form-check-input' type='checkbox'>";
+                                    <input class='form-check-input' type='checkbox' ";
                                 
                                 //Check if the user has admin rights already
                                 if ($row["isadmin"] == 'TRUE') {
