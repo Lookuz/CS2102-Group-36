@@ -121,7 +121,11 @@
             ", '$_POST[origin]', '$_POST[destination]')");
 
         if (!$result) {
-            echo 'error occured!';
+            echo "<div class='container p-3'>
+                <div class='alert alert-danger'>
+                    Ride Creation Error
+                </div>
+            </div>";
         } else {
             echo "
             <script>

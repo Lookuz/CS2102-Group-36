@@ -41,15 +41,13 @@
             <td>".$row["u_name"]."</td>
             <td>".$row["u_password"]."</td>
             <td>".$row["isadmin"]."</td>
-            <td>
-                <a href='/demo/admin_update_user.php?email=".urlencode($row["u_email"])."'>
+            <td><a href='/demo/admin_update_user.php?email=".urlencode($row["u_email"])."'>
                     <button class='btn btn-outline-primary'>
                         Edit user
                     </button>
                 </a>
             </td>
-            <td>
-                <a href='/demo/actions/delete_user.php?email=".urlencode($row["u_email"])."'>
+            <td><a href='/demo/actions/delete_user.php?email=".urlencode($row["u_email"])."'>
                     <button class='btn btn-outline-danger'>
                         Delete user
                     </button>
@@ -116,7 +114,11 @@
         $result = pg_query($db,"SELECT create_user('$_POST[email]', '$_POST[password]', '$_POST[username]')");
 
         if (!$result) {
-            echo 'error occured!';
+            echo "<div class='container p-3'>
+                <div class='alert alert-danger'>
+                    User Creation Error
+                </div>
+            </div>";
         } else {
             echo "
             <script>

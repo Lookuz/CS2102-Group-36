@@ -11,7 +11,7 @@
             <div class="row my-4" style="color:white;">
                     <div class="offset-md-4 col-md-4">
                         <form method="POST">
-                            <?php  
+                            <?php
                                 echo "<h1>Update user</h1>";
                                 echo "<label for='email'>Email</label>";
                                 echo "<input type='email' id='email' name='email' class='form-control' value='"
@@ -44,8 +44,6 @@
                 </div>
         </div>
     <?php include 'partials/script.php'; ?>
-</body>
-
 <?php
     if (isset($_POST['update_user'])) {
         $admin = 'FALSE';
