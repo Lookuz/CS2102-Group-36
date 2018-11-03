@@ -10,8 +10,8 @@ BEGIN
 	r_date_arg = string_to_date(r_date_str);
 	r_time_arg = string_to_time(r_time_str);
 
-	INSERT INTO rides(c_plate, r_date, r_time, r_origin, r_destination)
-	VALUES(c_plate_arg, r_date_arg, r_time_arg, r_origin_arg, r_destination_arg);
+	INSERT INTO rides
+	VALUES(DEFAULT, c_plate, r_date, r_time, r_origin, r_destination);
 END
 $$
 LANGUAGE plpgsql;
