@@ -114,7 +114,11 @@
         $result = pg_query($db,"SELECT create_user('$_POST[email]', '$_POST[password]', '$_POST[username]')");
 
         if (!$result) {
-            echo 'error occured!';
+            echo "<div class='container p-3'>
+                <div class='alert alert-danger'>
+                    User Creation Error
+                </div>
+            </div>";
         } else {
             echo "
             <script>
