@@ -5,9 +5,6 @@
         <div class="container">
             <?php 
                 include 'partials/admin_bids_list.php';
-                include 'partials/admin_rides_list.php';
-                include 'partials/admin_users_list.php';
-                include 'partials/admin_drivers_list.php';
             ?>
         </div>
     <?php include 'partials/script.php'; ?>

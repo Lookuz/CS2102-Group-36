@@ -1,5 +1,6 @@
 <!-- Table to show all the rides that are currently available in the
     advertise table -->
+    <br />
     <h3 style="color:white;">Users in database
         <button class='btn btn-success' data-toggle='modal' 
                 data-target='#createUserModal'>

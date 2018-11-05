@@ -35,7 +35,17 @@
     $index = 1;
 
     while($row=pg_fetch_assoc($result)) {
-        $highest_result = pg_query($db, "SELECT get_max_bid_func($row[r_id])");
+        if (empty($row["max_bid"])) {
+            $row["max_bid"] = 0;
+        }
+
+        if (!empty($_GET["from"]) && (strpos($row["r_origin_res"], $_GET["from"]) === FALSE)) {
+            continue;
+        }
+
+        if (!empty($_GET["to"]) && (strpos($row["r_destination_res"], $_GET["to"]) === FALSE)) {
+            continue;
+        }
 
         echo "
             <tr>
@@ -44,13 +54,11 @@
             <td>".$row["r_time_res"]."</td>
             <td>".$row["r_origin_res"]."</td>
             <td>".$row["r_destination_res"]."</td>
-            <td>".$row["max_bid"]."</td>";
-            if (isset($_SESSION['email'])) {
-                echo "<td><a href='/demo/bidpage.php?id=".urlencode($row["r_id"])."'>
+            <td>".$row["max_bid"]."</td>
+            <td><a href='/demo/bidpage.php?id=".urlencode($row["r_id"])."'>
                 <button class='btn btn-outline-primary'/>Bid here</button>
-                </a></td>";
-            }
-            echo "</tr>";
+            </a></td>
+            </tr>";
         $index++;
     }
 ?>

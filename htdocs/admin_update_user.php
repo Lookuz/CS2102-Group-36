@@ -56,10 +56,11 @@
         .", '$_POST[password]', '$_POST[username]', '$admin')");
 
         if (!$result) {
+            $err = error_get_last();
             echo "<div class='container p-3'>
-                <div class='alert alert-danger'>
-                    Error updating ride
-                </div>
+                <div class='alert alert-danger'>"
+                    .$err["message"].
+                "</div>
             </div>";
         } else {
             echo "

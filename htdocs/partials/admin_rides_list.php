@@ -1,4 +1,5 @@
 <!-- Table to show all the rides that are currently available in the database -->
+<br />
 <h3 style="color:white;">Rides in database
     <button class='btn btn-success' data-toggle='modal' 
             data-target='#createRideModal'>
