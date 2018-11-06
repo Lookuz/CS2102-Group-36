@@ -7,6 +7,7 @@
         <div class="container">
           <div class="row">
               <div class="col-md-6 offset-md-3 my-3">
+
                   <div class="bg-light rounded p-3">
                       <h2>Register as a driver</h2>
                       <br />
@@ -35,11 +36,10 @@
     <?php
     // Connect to the database. Please change the password in the following line accordingly
     include 'partials/connection.php';
-    
+
     if (isset($_POST['driver_signup'])) {
       $email = $_SESSION['email'];
-      $result = pg_query($db,"INSERT INTO drivers(c_plate, d_email, c_brand, c_model)
-      VALUES('$_POST[c_plate]', '$email', '$_POST[c_brand]', '$_POST[c_model]')");
+      $result = pg_query($db, "SELECT signup_as_driver('$_POST[c_plate]', '$email', '$_POST[c_brand]', '$_POST[c_model]')");
 
       if (!$result) {
         echo "Error registering as driver.\n";
@@ -48,9 +48,15 @@
         $_SESSION['isDriver'] = true;
         $_SESSION['c_plate'] = $_POST{'c_plate'};
         // Direct to Advertise Ride page
-        header("Refresh:0; url=driver.php");
+        echo "
+        <script>
+            window.location = '/demo/driver';
+        </script>";
       }
     }
     ?>
     <?php include 'partials/script.php'; ?>
 </body>
+<style>
+button {background-color: red;}
+</style>

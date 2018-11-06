@@ -33,10 +33,23 @@ include 'partials/head.php'; ?>
                 </form>
             </div>
         </div>
+        <form method="post">
+         <input name="unregister" type="submit" class="position-absolute btn btn-danger" style="top:90px; right:20px;" value="Unregister as driver" />
+        </form>
     </div>
+
     <?php
     // Connect to the database. Please change the password in the following line accordingly
     include 'partials/connection.php';
+    if(isset($_POST['unregister'])) {
+      $email = $_SESSION['email'];
+      $result = pg_query($db, "SELECT unregister_as_driver('$email')");
+      $_SESSION['isDriver'] = false;
+      echo "
+      <script>
+          window.location = '/demo/driver_signup';
+      </script>";
+    }
 
     if(isset($_POST['driver'])) {
         $email = $_SESSION['email'];
@@ -45,8 +58,8 @@ include 'partials/head.php'; ?>
             echo 'no car plate';
         }
 
-        $result = pg_query($db, "INSERT INTO rides(d_email, c_plate, r_date, r_time, r_origin, 
-                r_destination, a_status) VALUES('$email', '$c_plate', '$_POST[r_date]', '$_POST[r_time]', 
+        $result = pg_query($db, "INSERT INTO rides(d_email, c_plate, r_date, r_time, r_origin,
+                r_destination, a_status) VALUES('$email', '$c_plate', '$_POST[r_date]', '$_POST[r_time]',
                 '$_POST[r_origin]', '$_POST[r_destination]', 'AVAILABLE')");
     }
     ?>
