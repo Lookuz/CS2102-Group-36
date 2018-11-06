@@ -44,15 +44,16 @@
 
 <?php
     if (isset($_POST['update_bid'])) {
-        $result=pg_query($db, "SELECT edit_admin_rides_list($_GET[id], $_POST[id], "
-        ."'$_POST[carplate]', '$_POST[date]', '$_POST[time]', '$_POST[origin]', '$_POST[destination]', "
-        .", 'AVAILABLE'");
+        $result=pg_query($db, 
+        "SELECT edit_admin_rides_list($_GET[id], $_POST[id], '$_POST[carplate]', '$_POST[date]', "
+        ."'$_POST[time]', '$_POST[origin]', $_POST[destination]', 'Available'");
 
         if (!$result) {
+            $err = error_get_last();
             echo "<div class='container p-3'>
-                <div class='alert alert-danger'>
-                    Error updating ride
-                </div>
+                <div class='alert alert-danger'>"
+                    .$err["message"].
+                "</div>
             </div>";
         } else {
             echo "

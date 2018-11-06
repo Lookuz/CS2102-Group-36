@@ -1,6 +1,7 @@
 <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
     <a class='navbar-brand' href='/demo/index'><h3>Carpool CS2102</h3></a>
-    <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
+    <button class='navbar-toggler' type='button' data-toggle='collapse' 
+    data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
         <span class='navbar-toggler-icon'></span>
     </button>
     <div class='collapse navbar-collapse' id='navbarNav'>
@@ -22,10 +23,20 @@
                     </li>";
                 if ($_SESSION['isadmin'] == true) {
                     echo "
-                        <li class='nav-item'>
-                            <a class='nav-link' href='/demo/admin'>
-                                Administrator
+                        <li class='nav-item dropdown'>
+                            <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button'" 
+                            ."data-toggle='dropdown'>
+                            Administrator
                             </a>
+                            <div class='dropdown-menu'>
+                            <a class='dropdown-item' href='/demo/admin_users.php'>Users</a>
+                            <div class='dropdown-divider'></div>
+                            <a class='dropdown-item' href='/demo/admin_drivers.php'>Drivers</a>
+                            <div class='dropdown-divider'></div>
+                            <a class='dropdown-item' href='/demo/admin_bids.php'>Bids</a>
+                            <div class='dropdown-divider'></div>
+                            <a class='dropdown-item' href='/demo/admin_rides.php'>Rides</a>
+                            </div>
                         </li>
                     ";
                 }
@@ -55,10 +66,6 @@
                 </li>
             </ul>";
         } 
-        /*echo "<script>
-                console.log($_SESSION[isadmin]);        
-            </script>
-        ";*/
         ?>
     </div>
 </nav>
@@ -119,10 +126,10 @@ aria-labelledby='exampleModalLabel' aria-hidden='true'>
             session_start();
             $_SESSION['username'] = $row['u_name'];
             $_SESSION['email'] = $row['u_email'];
-            if ($_row['isadmine'] = 'TRUE') {
-                $_SESSION['isadmin'] = true;
+            if ($row['isadmin'] == 'TRUE') {
+                $_SESSION['isadmin'] = TRUE;
             } else {
-                $_SESSION['isadmin'] = false;
+                $_SESSION['isadmin'] = FALSE;
             }
             
 

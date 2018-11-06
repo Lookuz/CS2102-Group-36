@@ -43,10 +43,11 @@
         .", '$_POST[email]', '$_POST[brand]', '$_POST[model]')");
 
         if (!$result) {
+            $err = error_get_last();
             echo "<div class='container p-3'>
-                <div class='alert alert-danger'>
-                    Error updating driver
-                </div>
+                <div class='alert alert-danger'>"
+                    .$err["message"].
+                "</div>
             </div>";
         } else {
             echo "
