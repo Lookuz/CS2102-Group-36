@@ -57,10 +57,7 @@ include 'partials/head.php'; ?>
         if(!$c_plate) {
             echo 'no car plate';
         }
-
-        $result = pg_query($db, "INSERT INTO rides(d_email, c_plate, r_date, r_time, r_origin,
-                r_destination, a_status) VALUES('$email', '$c_plate', '$_POST[r_date]', '$_POST[r_time]',
-                '$_POST[r_origin]', '$_POST[r_destination]', 'AVAILABLE')");
+        $result = pg_query($db, "SELECT offer_a_ride('$c_plate', '$_POST[r_date]', '$_POST[r_time]', '$_POST[r_origin]', '$_POST[r_destination]')");
     }
     ?>
     <br />
