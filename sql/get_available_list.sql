@@ -11,6 +11,9 @@ RETURNS TABLE (
 AS 
 $$
 BEGIN
+
+PERFORM check_ride_status();
+
 DROP TABLE IF EXISTS all_bids;
 CREATE TEMP TABLE all_bids AS (
 	SELECT r.r_id, r.r_date, r.r_time, r.r_origin, r.r_destination, MAX(b.bid)
