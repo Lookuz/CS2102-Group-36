@@ -11,6 +11,9 @@
         <th scope='col'>Destination</th>
         <th scope='col'>Highest Bid</th>
         <th scope='col'>Status</th>
+        <?php if (isset($_SESSION['email'])) {
+            echo "<th scope='col'>Select Passenger</th>";
+        } ?>
 
     </tr>
     </thead>
@@ -20,7 +23,7 @@
     include 'partials/connection.php';
 
     //Initialize result
-    $result = pg_query($db, "SELECT * 
+    $result = pg_query($db, "SELECT *
         FROM rides r
         WHERE r.c_plate = '$_SESSION[c_plate]'
         ");
@@ -32,29 +35,53 @@
     $index = 1;
 
     while($row=pg_fetch_assoc($result)) {
-        $highest_result = pg_query($db, "SELECT max(b.bid)
+        $ride_id = $row["r_id"];
+        $highest_result = pg_query($db, "SELECT max(b.bid) as max
         FROM bids b
-        WHERE b.d_email = '$row[d_email]'
-        AND b.c_plate ='$row[c_plate]'
-        AND b.r_date = '$row[r_date]'
-        AND b.r_time = '$row[r_time]'
+        WHERE b.r_id = $ride_id;
         ");
 
         $highest = pg_fetch_row($highest_result);
 
-        echo "
-            <tr>
-            <th scope='row'>".$index."</th>
-            <td>".$row["r_date"]."</td>
-            <td>".$row["r_time"]."</td>
-            <td>".$row["r_origin"]."</td>
-            <td>".$row["r_destination"]."</td>
-            <td>".$highest[0]."</td>
-            <td>".$row["a_status"]."</td>
-            </tr>";
+        if ($row["a_status"] == 'AVAILABLE') {
+          echo "
+              <tr>
+              <th scope='row'>".$index."</th>
+              <td>".$row["r_date"]."</td>
+              <td>".$row["r_time"]."</td>
+              <td>".$row["r_origin"]."</td>
+              <td>".$row["r_destination"]."</td>
+              <td>$highest[0]</td>
+              <td>".$row["a_status"]."</td>
+              <td>
+                <a href='/demo/select_passenger.php?id=".urlencode($ride_id)."'>
+                  <button class='btn btn-outline-primary'/>Select</button>
+                  </a>
+              </td>
+              </tr>";
+        } else {
+          echo "
+              <tr>
+              <th scope='row'>".$index."</th>
+              <td>".$row["r_date"]."</td>
+              <td>".$row["r_time"]."</td>
+              <td>".$row["r_origin"]."</td>
+              <td>".$row["r_destination"]."</td>
+              <td>$highest[0]</td>
+              <td>".$row["a_status"]."</td>
+              <td>-</td>
+              </tr>";
+        }
+
         $index++;
     }
     ?>
 
     </tbody>
 </table>
+
+<!-- <td>
+  <a href='/demo/bidpage.php?id=".urlencode($row["r_id"])."'>
+    <button class='btn btn-outline-primary'/>Select</button>
+    </a>
+</td> -->
