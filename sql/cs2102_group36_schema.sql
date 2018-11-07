@@ -36,6 +36,7 @@ CREATE TABLE Bids (
     r_id INT,
     p_email VARCHAR(64),
     bid NUMERIC CHECK(bid > 0) NOT NULL,
+    b_status VARCHAR(10) CHECK(b_status IN ('PENDING', 'ACCEPTED', 'REJECTED')) DEFAULT 'PENDING',
     FOREIGN KEY(r_id) REFERENCES Rides(r_id) ON UPDATE CASCADE,
     FOREIGN KEY(p_email) REFERENCES Users(u_email) ON UPDATE CASCADE,
     PRIMARY KEY(r_id, p_email) 
