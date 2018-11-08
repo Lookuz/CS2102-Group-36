@@ -20,10 +20,10 @@
                             echo "<input type='text' id='carplate' name='carplate' class='form-control'
                                 value='".$row["c_plate"]."' required>";
                             echo "<label for='date'>Date</label>";
-                            echo "<input type='text' id='date' class='form-control' name='date' value='"
+                            echo "<input type='date' id='date' class='form-control' name='date' value='"
                                 .$row["r_date"]."' required>";
                             echo "<label for='time'>Time</label>";
-                            echo "<input type='text' id='time' class='form-control' name='time' value='"
+                            echo "<input type='time' id='time' class='form-control' name='time' value='"
                                 .$row["r_time"]."' placeholder='HH:MM:SS' required>";
                             echo "<label for='origin'>Origin</label>";
                             echo "<input type='text' id='origin' class='form-control' name='origin' value='"
@@ -45,8 +45,8 @@
 <?php
     if (isset($_POST['update_bid'])) {
         $result=pg_query($db, 
-        "SELECT edit_admin_rides_list($_GET[id], $_POST[id], '$_POST[carplate]', '$_POST[date]', "
-        ."'$_POST[time]', '$_POST[origin]', $_POST[destination]', 'Available'");
+        "SELECT edit_admin_rides_list('$_GET[id]', '$_POST[id]', '$_POST[carplate]', '$_POST[date]', "
+        ."'$_POST[time]', '$_POST[origin]', '$_POST[destination]', 'AVAILABLE')");
 
         if (!$result) {
             $err = error_get_last();
@@ -58,7 +58,7 @@
         } else {
             echo "
             <script>
-                window.location = '/demo/admin_ride.php';
+                window.location = '/demo/admin_rides.php';
             </script>";
         }
     }

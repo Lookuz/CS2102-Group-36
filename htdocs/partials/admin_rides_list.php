@@ -130,7 +130,7 @@
         } else {
             echo "
             <script>
-                window.location = '/demo/admin';
+                window.location = '/demo/admin_rides.php';
             </script>";
         }
         

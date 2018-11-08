@@ -58,6 +58,19 @@ include 'partials/head.php'; ?>
             echo 'no car plate';
         }
         $result = pg_query($db, "SELECT offer_a_ride('$c_plate', '$_POST[r_date]', '$_POST[r_time]', '$_POST[r_origin]', '$_POST[r_destination]')");
+        
+        if (!$result) {
+            echo "<div class='container p-3'>
+                <div class='alert alert-danger'>
+                    Error Creating Ride
+                </div>
+            </div>";
+        } else {
+            echo "
+            <script>
+                window.location = '/demo/driver.php';
+            </script>";
+        }
     }
     ?>
     <br />

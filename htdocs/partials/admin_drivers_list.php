@@ -124,7 +124,7 @@
         } else {
             echo "
             <script>
-                window.location = '/demo/admin';
+                window.location = '/demo/admin_drivers.php';
             </script>";
         }
         
