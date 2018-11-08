@@ -29,7 +29,7 @@
             </div>
             <br />
             <?php 
-            include 'partials/available_list.php';
+                include 'partials/available_list.php';
                 echo"<br />";
                 include 'partials/user_list.php';
             ?>

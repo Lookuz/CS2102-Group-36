@@ -52,7 +52,7 @@
         } else {
             echo "
             <script>
-                window.location = '/demo/admin_driver.php';
+                window.location = '/demo/admin_drivers.php';
             </script>";
         }
     }

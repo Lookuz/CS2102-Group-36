@@ -65,7 +65,7 @@
         } else {
             echo "
             <script>
-                window.location = '/demo/admin_user.php';
+                window.location = '/demo/admin_users.php';
             </script>";
         }
     }
