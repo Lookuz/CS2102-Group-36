@@ -10,9 +10,9 @@ BEGIN
 
 	UPDATE bids
 	SET b_status =  CASE
-										WHEN p_email = p_email_arg THEN 'ACCEPTED'
-										ELSE 'REJECTED'
-									END
+		WHEN p_email = p_email_arg THEN 'ACCEPTED'
+		ELSE 'REJECTED'
+		END
 	WHERE r_id = r_id_arg;
 END
 $$

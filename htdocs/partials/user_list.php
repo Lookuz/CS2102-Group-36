@@ -11,6 +11,7 @@
             <th scope='col'>Destination</th>
             <th scope='col'>Highest Bid</th>
             <th scope='col'>Your bid</th>
+            <th scope='col'>Bid Status</th>
             <th scopr='col'>Delete</th>
         </tr>
     </thead>
@@ -18,11 +19,7 @@
 <?php
     // Connect to the database. Please change the password in the following line accordingly
     include 'partials/connection.php';
-
-    if (!$db) {
-        echo 'Error Connecting';
-    }
-
+    
     //Initialize result
     $result = pg_query($db, "SELECT * FROM get_user_list('$_SESSION[email]')");
 
@@ -49,6 +46,7 @@
             <td>".$row["r_destination_res"]."</td>
             <td>".$row["max_bid"]."</td>
             <td>".$user_bid."</td>
+            <td>".$row["b_status"]."</td>
             <td><a href='/demo/delete_bid.php?id=".$row["r_id"]."'>
                 <button class='btn btn-outline-danger'>
                     Delete
