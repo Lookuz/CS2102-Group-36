@@ -23,7 +23,7 @@
 
     if (!$db) {
         echo 'Error Connecting';
-    }  
+    }
 
     //Initialize result
     $result = pg_query($db, "SELECT * FROM get_available_list('$_SESSION[email]')");

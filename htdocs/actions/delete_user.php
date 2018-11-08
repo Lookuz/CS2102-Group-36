@@ -7,7 +7,7 @@
     if (!$result) {
         echo "<div class='container p-3'>
             <div class='alert alert-danger'>
-                Seletion Error
+                Deletion Error
             </div>
         </div>";
     }
