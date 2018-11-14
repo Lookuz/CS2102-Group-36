@@ -1,3 +1,4 @@
+/** Function to update rides for administrator **/
 CREATE OR REPLACE FUNCTION edit_admin_rides_list
 (r_id_key INT, r_id_arg INT, c_plate_arg TEXT, r_date_str TEXT, r_time_str TEXT, 
  r_origin_arg TEXT, r_dest_arg TEXT, a_status_arg TEXT)

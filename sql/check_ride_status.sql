@@ -1,3 +1,4 @@
+/** Function to update expired rides if any **/
 CREATE OR REPLACE FUNCTION check_ride_status()
 RETURNS void
 AS

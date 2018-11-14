@@ -1,3 +1,4 @@
+/** Function to update a user in administrator's user list **/
 CREATE OR REPLACE FUNCTION edit_admin_user_list
 (users_key TEXT, u_email_arg TEXT, u_password_arg TEXT, u_name_arg TEXT, isAdmin_arg TEXT)
 RETURNS void

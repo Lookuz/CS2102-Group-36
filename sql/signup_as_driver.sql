@@ -1,3 +1,4 @@
+/** Function to sign a user up as driver **/
 CREATE OR REPLACE FUNCTION signup_as_driver
 (c_plate_arg TEXT, d_email_arg TEXT, c_brand_arg TEXT, c_model_arg TEXT)
 RETURNS void

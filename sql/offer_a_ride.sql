@@ -1,3 +1,4 @@
+/** Function for driver to advertise new ride **/
 CREATE OR REPLACE FUNCTION offer_a_ride
 (c_plate_arg TEXT, r_date_str TEXT, r_time_str TEXT, r_origin_arg TEXT, r_destination_arg TEXT)
 RETURNS void

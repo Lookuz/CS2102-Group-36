@@ -1,3 +1,4 @@
+/** Function to delete a driver **/
 CREATE OR REPLACE FUNCTION delete_driver
 (c_plate_arg TEXT)
 RETURNS void

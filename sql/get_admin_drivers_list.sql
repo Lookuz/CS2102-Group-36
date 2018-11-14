@@ -1,3 +1,4 @@
+/** Function to retrieve all drivers for administrator **/
 CREATE OR REPLACE FUNCTION get_admin_drivers_list()
 RETURNS TABLE (
 	c_plate VARCHAR(10),

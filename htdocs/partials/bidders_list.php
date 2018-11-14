@@ -1,7 +1,7 @@
 <!-- Table to show all the bidders for this ride -->
-<h3 style="color:white;">Bidders for this ride:</h3>
+<h3 class= 'offset-md-2'style="color:white;">Bidders for this ride:</h3>
 <br />
-<table class='table table-dark'>
+<table class='table table-dark offset-md-2 col-md-8'>
     <thead class='thead'>
     <tr>
         <th scope='col'>#</th>
