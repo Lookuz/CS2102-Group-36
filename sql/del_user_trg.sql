@@ -18,6 +18,7 @@ BEGIN
 		) THEN
 			DELETE FROM drivers d
 			WHERE d.d_email = OLD.u_email;
+		ELSE
 	END CASE;
 		
 	RETURN OLD;

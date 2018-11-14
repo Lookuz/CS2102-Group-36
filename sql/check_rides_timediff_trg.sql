@@ -11,8 +11,7 @@ BEGIN
 		r.a_status LIKE 'AVAILABLE' AND
 		NEW.r_date = r.r_date AND
 		(
-			(NEW.r_time - r.r_time) < INTERVAL'15 minutes' OR
-			(r.r_time - NEW.r_time) < INTERVAL'15 minutes'
+			get_absinterval(NEW.r_time, r.r_time) < INTERVAL'15 minutes'
 		) 
 	) THEN
 		RAISE EXCEPTION 'ERROR: RIDE CANNOT BE 15 MINUTES FROM PREVIOUSLY ADVERTISED RIDES';
