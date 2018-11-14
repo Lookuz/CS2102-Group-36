@@ -1,3 +1,4 @@
+/** Function to retrieve all users for administrator **/
 CREATE OR REPLACE FUNCTION get_admin_user_list()
 RETURNS TABLE (
 	u_email VARCHAR(64),

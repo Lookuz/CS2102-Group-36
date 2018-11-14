@@ -1,3 +1,4 @@
+/** Function to retrieve all rides for administrator **/
 CREATE OR REPLACE FUNCTION get_admin_rides_list()
 RETURNS TABLE (
 	r_id INT,

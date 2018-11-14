@@ -1,3 +1,4 @@
+/** Function to retrieve all bids for administrator **/
 CREATE OR REPLACE FUNCTION get_admin_bids_list()
 RETURNS TABLE (
 	r_id INT,

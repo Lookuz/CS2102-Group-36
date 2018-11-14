@@ -1,3 +1,4 @@
+/** Function to accept user bid. Updates b_status of accepted bid to 'ACCEPTED', others to 'REJECTED' **/
 CREATE OR REPLACE FUNCTION accept_a_bid
 (r_id_arg INT, p_email_arg TEXT)
 RETURNS void

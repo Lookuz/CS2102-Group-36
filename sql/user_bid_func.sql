@@ -1,3 +1,4 @@
+/** Function creates a new bid for ride with r_id, else updates existing bid **/
 CREATE OR REPLACE FUNCTION user_bid_func
 (p_email_arg TEXT, r_id_arg INT, new_bid NUMERIC)
 RETURNS void
@@ -24,4 +25,4 @@ BEGIN
 	END IF;
 END;
 $$
-LANGUAGE plpgsql
+LANGUAGE plpgsql;

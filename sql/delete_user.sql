@@ -1,3 +1,4 @@
+/** Function to delete user **/
 CREATE OR REPLACE FUNCTION delete_user
 (u_email_arg TEXT)
 RETURNS void

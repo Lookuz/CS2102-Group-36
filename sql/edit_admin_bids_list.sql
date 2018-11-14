@@ -1,3 +1,4 @@
+/** Function to update bids for administrator **/
 CREATE OR REPLACE FUNCTION edit_admin_bids_list
 (r_id_key INT, p_email_key TEXT, r_id_arg INT, p_email_arg TEXT, bid_arg NUMERIC)
 RETURNS void

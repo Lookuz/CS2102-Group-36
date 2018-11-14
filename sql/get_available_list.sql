@@ -1,3 +1,4 @@
+/** Function to retrieve all available rides for the user**/
 CREATE OR REPLACE FUNCTION get_available_list
 (u_email TEXT)
 RETURNS TABLE (
@@ -18,8 +19,8 @@ DROP TABLE IF EXISTS all_bids;
 CREATE TEMP TABLE all_bids AS (
 	SELECT r.r_id, r.r_date, r.r_time, r.r_origin, r.r_destination, MAX(b.bid)
 	FROM rides r LEFT OUTER JOIN bids b ON
-	r.r_id = b.r_id AND
-	r.a_status LIKE 'AVAILABLE'
+	r.r_id = b.r_id 
+	WHERE r.a_status LIKE 'AVAILABLE'
 	GROUP BY r.r_id, r.r_date, r.r_time, r.r_origin, r.r_destination
 	ORDER BY r.r_date, r.r_time
 );
@@ -30,14 +31,14 @@ ELSE
 	RETURN QUERY SELECT * FROM all_bids EXCEPT (
 		SELECT r.r_id, r.r_date, r.r_time, r.r_origin, r.r_destination, MAX(b.bid)
 		FROM rides r LEFT OUTER JOIN bids b ON
-		r.r_id = b.r_id AND
-		r.a_status LIKE 'AVAILABLE'
+		r.r_id = b.r_id
 		WHERE EXISTS(
 			SELECT * 
 			FROM drivers d INNER JOIN rides r2
 			ON d.c_plate = r2.c_plate
 			WHERE r2.r_id = r.r_id AND
-			d.d_email = u_email)
+			d.d_email = u_email) AND
+		r.a_status LIKE 'AVAILABLE'
 		GROUP BY r.r_id, r.r_date, r.r_time, r.r_origin, r.r_destination);
 END IF;
 END

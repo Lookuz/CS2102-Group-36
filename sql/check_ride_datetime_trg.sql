@@ -1,3 +1,4 @@
+/** Trigger Function to ensure ride registered is >= current date and time **/
 CREATE OR REPLACE FUNCTION check_ride_datetime_trg()
 RETURNS TRIGGER
 AS
