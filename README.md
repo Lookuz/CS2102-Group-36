@@ -6,6 +6,6 @@ Users are able to bid and cancel rides on the website based on date, time origin
 
 System Architecture:
 
-Web Stack: Bitnami XAMPP
-Database: PostgreSQL with pgAdmin4
-Languages used: HTML/CSS/PHP/JS/SQL
+Web Stack: Bitnami XAMPP  
+Database: PostgreSQL with pgAdmin4  
+Languages used: HTML/CSS/PHP/JS/SQL  
